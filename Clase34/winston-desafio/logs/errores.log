@@ -1,0 +1,3 @@
+{"level":"error","message":"mensaje de error"}
+{"level":"warn","message":"mensaje de advertencia, el usuario no existe"}
+{"level":"error","message":"Los numeros no son validos"}
