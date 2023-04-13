@@ -1,0 +1,9 @@
+<h1> Usuarios </h1>
+<div>
+    {{#each users}}
+        <div style="border:1px solid gray; border-radius:4px;padding:10px;">
+            <p>Correo: {{this.email}}</p>
+            <p>Nombre: {{this.first_name}}</p>
+        </div>
+    {{/each}}
+</div>
