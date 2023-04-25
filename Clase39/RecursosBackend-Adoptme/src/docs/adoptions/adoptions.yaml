@@ -1,0 +1,33 @@
+paths:
+  /api/adoptions/{uid}/{pid}:
+    post:
+      summary: "adoptar mascota"
+      tags:
+        - Adopcion
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario que quiere adoptar
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: id de la mascota a adoptar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "mascota adoptada correctamente"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  payload:
+                    type: string
+        "500":
+          description: hubo un error en el servidor, usualmente por un proceso defectuoso

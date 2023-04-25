@@ -1,0 +1,52 @@
+paths:
+  /api/pets/:
+    get:
+      summary: "obtener todas las mascotas"
+      tags:
+        - Mascotas
+      responses:
+        "200":
+          description: mascotas obtenidas correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Pet"
+        "500":
+          description: hubo un error en el servidor, usualmente por un proceso defectuoso
+
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: "id autogenerado por la base de datos"
+        name:
+          type: string
+          description: "nombre de la mascota"
+        scpecie:
+          type: string
+          description: "tipo de mascota"
+        birthday:
+          type: string
+          description: "nacimiento de la mascota"
+        adopted:
+          type: boolean
+          description: "indica si la mascota fue adoptada"
+        owner:
+          type: ObjectId
+          description: "id del usuario dueño de la mascota"
+        image:
+          type: string
+          description: "imagen de la mascota"
+      example:
+        _id: ObjectId("kajhd9127kajsh812asds23423")
+        name: Patitas
+        specie: Perro
+        birthday: "05-10-2020"
+        adopted: true
+        owner: ObjectId("kajhd9127kajsh812asds287623")
+        image: "http://imagenes.com/patitas.jpg"

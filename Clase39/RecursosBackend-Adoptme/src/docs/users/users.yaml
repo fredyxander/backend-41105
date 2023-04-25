@@ -1,0 +1,116 @@
+paths:
+  /api/users/:
+    get:
+      summary: "Obtener todos los usuarios"
+      tags:
+        - Usuarios
+      responses:
+        "200":
+          description: usuarios obtenidos correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/User"
+        "500":
+          description: hubo un error en el servidor, usualmente por un proceso defectuoso
+  /api/users/{uid}:
+    get:
+      summary: "Obtener un usuario por el id"
+      tags:
+        - Usuarios
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario que se quiere consultar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: usuario obtenido por el id correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/User"
+        "500":
+          description: hubo un error en el servidor, usualmente por un proceso defectuoso
+    put:
+      summary: "Actualizar un usuario por el id"
+      tags:
+        - Usuarios
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario que se quiere actualizar
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          appplication/json:
+            schema:
+              $ref: "#components/requestBodies/updateUser"
+      responses:
+        "200":
+          description: "usuario actualizado correctamente"
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/User"
+        "500":
+          description: hubo un error en el servidor, usualmente por un proceso defectuoso
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: "id autogenerado por la base de datos"
+        first_name:
+          type: string
+          description: "nombre del usuario"
+        last_name:
+          type: string
+          description: "apellido del usuario"
+        email:
+          type: string
+          description: "correo del usuario"
+        password:
+          type: string
+          description: "contraseña del usuario encryptada"
+        role:
+          type: string
+          description: "role del usuario"
+      example:
+        _id: ObjectId("kajhd9127kajsh812asds23423")
+        first_name: Pepito
+        last_name: Perez
+        email: pepito@gmail.com
+        password: $kahjs98172akshd891273akjshdad
+        role: user
+  requestBodies:
+    updateUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: "nombre del usuario"
+        last_name:
+          type: string
+          description: "apellido del usuario"
+        email:
+          type: string
+          description: "correo del usuario"
+        password:
+          type: string
+          description: "contraseña del usuario en texto plano"
+      example:
+        first_name: juan
+        last_name: Gomez
+        email: juan@gmail.com
+        password: "1234"
